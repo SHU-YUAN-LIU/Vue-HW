@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ham</title>
+    <script src="https://unpkg.com/vue@3.0.11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet"
@@ -178,62 +179,72 @@
 </head>
 
 <body>
-    <div id="header">
-        <div class="nav">
-            <!-- logo -->
-            <a href="index.html"><img src="img/logo.svg" alt="logo"></a>
-            <!-- 導覽列 -->
-            <div class="navbar">
+
+    <div id="app">
+        <div id="header">
+            <div class="nav">
+                <!-- logo -->
+                <a href="index.html"><img src="img/logo.svg" alt="logo"></a>
+                <!-- 導覽列 -->
+                <div class="navbar">
+                    <ul>
+                        <!-- 導覽列-中 -->
+                        <!-- <li><a href="#" class="header-item">首頁</a></li>
+                        <li><a href="#" class="header-item">關於我們</a></li>
+                        <li><a href="#" class="header-item">產品介紹</a></li>
+                        <li><a href="#" class="header-item">車輛配件</a></li>
+                        <li><a href="#" class="header-item">最新消息</a></li>
+                        <li><a href="#" class="header-item">聯絡我們</a><li> -->
+                        <li v-for="item in navItem"><a>{{ item.text }}</a></li>
+
+                    </ul>
+                    <ul>
+                        <!-- 導覽列-右-->
+                        <li><a href="Reserve.html" class="reserve">預約試乘</a></li>
+                        <li><a href="Login.html" class="item">登入</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 漢堡 -->
+            <div id="hamburgerMenu">
+                <div class="ham-bar"></div>
+                <div class="ham-bar"></div>
+                <div class="ham-bar"></div>
+            </div>
+            <div class="ham-pull-menu" id="hamPullMenu">
                 <ul>
-                    <!-- 導覽列-中 -->
-                    <li><a href="index.html" class="header-item">首頁</a></li>
-                    <li><a href="AboutUs.html" class="header-item">關於我們</a></li>
-                    <li><a href="Motor.html" class="header-item">產品介紹</a></li>
-                    <li><a href="Things.html" class="header-item">車輛配件</a></li>
-                    <li><a href="News.html" class="header-item">最新消息</a></li>
-                    <li><a href="Contact-us.html" class="header-item">聯絡我們</a>
-                    <li>
-                </ul>
-                <ul>
-                    <!-- 導覽列-右-->
-                    <li><a href="Reserve.html" class="reserve">預約試乘</a></li>
-                    <li><a href="Login.html" class="item">登入</a></li>
+                    <!-- <li><a href="index.html" class="ham-item">首頁</a></li>
+                    <li><a href="AboutUs.html" class="ham-item">關於我們</a></li>
+                    <li><a href="Motor.html" class="ham-item">產品介紹</a></li>
+                    <li><a href="Things.html" class="ham-item">車輛配件</a></li>
+                    <li><a href="News.html" class="ham-item">最新消息</a></li>
+                    <li><a href="Contact-us.html" class="ham-item">聯絡我們</a></li>
+                    <li><a href="Reserve.html" class="ham-item">預約試乘</a></li>
+                    <li><a href="Login.html" class="ham-item">登入</a></li> -->
+                    <li v-for="item in navItem"><a>{{ item.text }}</a></li>
                 </ul>
             </div>
         </div>
-        <!-- 漢堡 -->
-        <div id="hamburgerMenu">
-            <div class="ham-bar"></div>
-            <div class="ham-bar"></div>
-            <div class="ham-bar"></div>
-        </div>
-
-        <div class="ham-pull-menu" id="hamPullMenu">
-            <ul>
-                <li><a href="index.html" class="ham-item">首頁</a></li>
-                <li><a href="AboutUs.html" class="ham-item">關於我們</a></li>
-                <li><a href="Motor.html" class="ham-item">產品介紹</a></li>
-                <li><a href="Things.html" class="ham-item">車輛配件</a></li>
-                <li><a href="News.html" class="ham-item">最新消息</a></li>
-                <li><a href="Contact-us.html" class="ham-item">聯絡我們</a></li>
-                <li><a href="Reserve.html" class="ham-item">預約試乘</a></li>
-                <li><a href="Login.html" class="ham-item">登入</a></li>
-            </ul>
-        </div>
     </div>
 
-    <!-- 以下卡很久好像有錯誤 -->
-    <!-- <script>
-        window.addEventListener("load", function () {
-            
-            document.getElementById("hamburgerMenu").onclick = () => {
-
-           
-                ham-pull-menu.classList.toggle("block");
-            };
-        });
-    </script> -->
-
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    navItem: [
+                        { text: '首頁' },
+                        { text: '關於我們' },
+                        { text: '產品介紹' },
+                        { text: '車輛配件' },
+                        { text: '最新消息' },
+                        { text: '聯絡我們' },
+                        { text: '預約試乘' },
+                        { text: '登入' }
+                    ]
+                };
+            }
+        }).mount('#app');
+    </script>
     <script>
         $(function () {
             $('#hamburgerMenu').click(function () {
